@@ -74,13 +74,27 @@
 <!--  </ul>-->
 <!--{% endfor %}-->
 
+<!--<nav class="navbar navbar-secondary bg-dark">-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+
+        <span style="width: 70%" class="navbar-text">
+            Здесь предоставлены цены на услуги по категориям. Также вы можете осуществить поиск по интересующим вас позициям
+        </span>
+        <form action="{% url 'search' %}" class="d-flex"  method="get">
+            <input name="search" class="form-control me-2" type="" placeholder="Введите наименование" aria-label="Search">
+            <button class="btn btn-outline-secondary" type="submit">Найти</button>
+        </form>
+    </div>
+</nav>
 
 
-<div class="accordion accordion-info"  id="accordionPanelsStayOpenExample">
+<div class="accordion accordion-info "  id="accordionPanelsStayOpenExample">
   {% for category in categories %}
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-heading{{ category.pk }}">
-      <button  class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ category.pk }}" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+      <button style="color: dark" class="accordion-button collapsed btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ category.pk }}" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
         {{ category.name }}
       </button>
     </h2>
@@ -113,5 +127,5 @@
 
 
 
-
+</main>
 {% endblock %}

@@ -1,18 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .models import *
 from django.views.generic import TemplateView
+from django.db.models import Q
+
 
 def home(request):
     return render(request, 'electric_app/home.html')
 
 
-
-# def price_table(request):
-#     category=Category.objects.all()
-#     list_price=Price.objects.all()
-#     return render(request, 'electric_app/price_table.html',{'category':category,'list_price':list_price})
-
-class PriceTable(TemplateView):       #для вывода таблиц
+class PriceTable(TemplateView):  # для вывода таблиц
     template_name = 'electric_app/price_table.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -21,4 +17,15 @@ class PriceTable(TemplateView):       #для вывода таблиц
         return context
 
 
+def search(request):
+    results = []
+    if request.method == "GET":
+        query = request.GET.get('search', '').lower()
 
+        if query == '':
+            query = 'None'
+
+
+    results = Price.objects.filter(Q(title__icontains=query) | Q(title__icontains=query.capitalize()))
+    results2 = Category.objects.filter(Q(name__icontains=query) | Q(name__icontains=query.capitalize()))
+    return render(request, 'electric_app/search_table.html', {'query': query, 'results': results, 'results2': results2})

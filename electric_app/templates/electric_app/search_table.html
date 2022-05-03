@@ -1,0 +1,83 @@
+{% extends "electric_app/base.html" %}
+{% load static %}
+{% block title %}<title>Электрик в краснодаре: цены</title>{% endblock %}
+
+{% block content %}
+
+{% if query %}
+
+    <h5>
+        {% with results.count as total_results %}
+
+        Найдено: {{ total_results }} в наименованиях
+
+        {% endwith %}
+    </h5>
+    <table class="table table-hover border border-dark table-bordered">
+        <thead>
+        <tr>
+            <th style="width: 55%" scope="col">Наименование услуги</th>
+            <th style="width: 10%" scope="col">Ед. изм</th>
+            <th style="width: 15%" scope="col">Цена (руб)</th>
+            <th style="width: 20%" scope="col">Категория</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for i in results %}
+        <tr>
+            <td class="table-active" >{{ i.title }}</td>
+            <td>{{ i.unit }}</td>
+            <td>{{ i.price }}</td>
+            <td>{{ i.cat }}</td>
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+
+
+    <h5>
+        {% with results2.count as total_results %}
+
+        Найдено: {{ total_results }} в названиях категорий
+
+        {% endwith %}
+    </h5>
+
+    <table class="table table-hover border border-dark  table-bordered  ">
+        <thead>
+        <tr>
+            <th style="width: 20%" scope="col">Категория</th>
+            <th style="width: 55%" scope="col">Наименование услуги</th>
+            <th style="width: 10%" scope="col">Ед. изм</th>
+            <th style="width: 15%" scope="col">Цена (руб)</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for category in results2 %}
+
+            {% for i in category.price_set.all %}
+            <tr>
+                <td class="table-active">{{ i.cat }}</td>
+                <td>{{ i.title }}</td>
+                <td>{{ i.unit }}</td>
+                <td>{{ i.price }}</td>
+            </tr>
+            {% endfor %}
+        {% endfor %}
+            </tbody>
+        </table>
+
+
+
+
+{% endif %}
+<p><a class="btn btn-secondary" href="{% url 'price_table' %}">Назад &raquo;</a></p>
+{% endblock %}
+

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, get_object_or_404
 
 
 # def show_news(request):
@@ -30,6 +31,7 @@ def show_news(request):
     return render(request, 'blog/show_news.html', context)
 
 
-
-
+def post_detail(request, pk):
+    post = get_object_or_404(Post,pk=pk)
+    return render(request,'blog/post_detail.html',{'post':post})
 
