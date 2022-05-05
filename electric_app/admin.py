@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import *
 
 class PriceAdmin(admin.ModelAdmin):
-    list_display = ('title','unit','price','cat')
+    list_display = ('title','price','cat')
     list_display_links = ('cat','title')
     list_filter = ('cat',)
 

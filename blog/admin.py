@@ -9,6 +9,7 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('header',)
     list_filter = ('time_create',)
     readonly_fields = ('time_create',)
+    prepopulated_fields = {'slug':('header',)}
 
     def get_html_photo(self, object):
         if object.image_preview:
@@ -25,7 +26,17 @@ class PhotoAdmin(admin.ModelAdmin):
 
     get_html_photo.short_description = 'Миниатюра'
 
+class Category_postAdmin(admin.ModelAdmin):
+    list_display = ('name_category','slug')
+    prepopulated_fields = {'slug': ('name_category',)}
+    search_fields = ('name_category',)
+
+
+
+
+
 
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Photo,PhotoAdmin)
+admin.site.register(Category_post,Category_postAdmin,)

@@ -8,7 +8,8 @@ def home(request):
     return render(request, 'electric_app/home.html')
 
 
-class PriceTable(TemplateView):  # для вывода таблиц
+class PriceTable(TemplateView):
+
     template_name = 'electric_app/price_table.html'
 
     def get_context_data(self, *args, **kwargs):

@@ -3,59 +3,66 @@
 
 
 {% block content %}
-<main>
+<main class="bg-dark">
+    <!--    контейнер-->
+    <main class="container ">
+        <div class="p-4 p-md-5 mb-4 text-light rounded bg-dark">
+            <div class="col-md-6 px-0">
+                <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
+                <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s
+                    most interesting in this post’s contents.</p>
+                <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+            </div>
+        </div>
+    </main>
+    <!--    контейнер-->
 
-  <section class="py-5 text-center container id='containerlove'">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Заголовок страницы про альбом</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Контакты?</a>
-          <a href="#" class="btn btn-secondary my-2">Может быть срзу ссылка на вацап</a>
-        </p>
-      </div>
-    </div>
-  </section>
+    <div class="row g-5 bg-light">
 
-  {% include "blog/pagination.html" with page=posts %}
+        <!--    div боковой панель-->
+        <div class="col-md-2">
+            <div class="position-sticky" style="top: 2rem;">
+                {% include "blog/list_categories.html" %}
+            </div>
+        </div>
+        <!--    div боковой панель-->
 
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="album py-5 bg-light col-md-10 ">
+            {% include "blog/pagination.html" with page=posts %}
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-        {% for i in posts %}
-        <div class="col">
-          <div class="card shadow-sm">
-<!--            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
-            <img src="{{ i.image_preview.url }}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{ i.header }}</h5>
-              <p class="card-text">{{ i.header2 }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn btn-dark">Читать</button>
+                    {% for i in posts %}
+                    <div class="col">
+                        <div class="card shadow-sm">
+
+                            <img src="{{ i.image_preview.url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ i.header }}</h5>
+                                <p class="card-text">{{ i.header2 }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <p><a class="btn btn-sm btn btn-dark" href="{{ i.get_absolute_url }}">Читать</a></p>
+
+
+                                    </div>
+                                    <small class="text-muted">{{ i.time_create|date:"d M Y" }}</small>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
 
                 </div>
-<!--                <small class="text-muted">{{ i.time_create|date:"d M Y" }}</small>-->
-                <small class="text-muted">{{ i.time_create }}</small>
-
-              </div>
             </div>
-          </div>
+            {% include "blog/pagination.html" with page=posts %}
         </div>
 
-        {% endfor %}
-
-      </div>
     </div>
-  </div>
-
 </main>
 
 
-
-
-
-{% include "blog/pagination.html" with page=posts %}
 {% endblock %}

@@ -1,0 +1,9 @@
+<div class="p-4">
+    <h4 class="fst-italic">Категории</h4>
+    <ol class="list-unstyled mb-0">
+        {% for i in category %}
+        <li><a href="{{ i.get_absolute_url }}">{{ i.name_category }}</a></li>
+        {% endfor %}
+    </ol>
+</div>
+
