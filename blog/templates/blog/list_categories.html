@@ -1,6 +1,7 @@
 <div class="p-4">
     <h4 class="fst-italic">Категории</h4>
     <ol class="list-unstyled mb-0">
+        <li><a href="{% url 'news' %}">Все записи</a></li>
         {% for i in category_list %}
         <li><a href="{{ i.get_absolute_url }}">{{ i.name_category }}</a></li>
         {% endfor %}

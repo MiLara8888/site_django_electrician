@@ -7,19 +7,14 @@ from django.views.generic import TemplateView
 
 def post_detail(request, post_slug):
     post = get_object_or_404(Post, slug=post_slug)
+    desc=post.category_post
     category_list = Category_post.objects.all()
     photo = Photo.objects.all()
     context = {'post': post,
                'photo': photo,
-               'category_list': category_list}
+               'category_list': category_list,
+               'desc':desc,}
     return render(request, 'blog/post_detail.html', context=context)
-
-
-# def category_list(request, category_slug):
-#     category = get_object_or_404(Category_post, slug=category_slug)
-#     context = {'category': category}
-#     return render(request, 'blog/list_categories.html', context=context)
-
 
 def category_list(request, category_slug=None):
     category = None
@@ -66,3 +61,6 @@ def show_news(request):
         'category_list': category_list
     }
     return render(request, 'blog/show_news.html', context)
+
+
+
