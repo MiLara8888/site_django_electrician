@@ -4,10 +4,6 @@ from django.views.generic import TemplateView
 from django.db.models import Q
 
 
-def home(request):
-    return render(request, 'electric_app/home.html')
-
-
 class PriceTable(TemplateView):
 
     template_name = 'electric_app/price_table.html'

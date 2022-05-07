@@ -1,0 +1,94 @@
+{% extends "electric_app/base.html" %}
+{% load static %}
+{% block title %}<title>Электрик в краснодаре</title>{% endblock %}
+{% block content %}
+<main>
+
+    <!--  карусель-->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img style="max-width: 100%;height: auto;"
+                     src="{{ c1.image_car.url }}"
+                     class="d-block w-100 img-responsive" alt="...">
+                <div class="carousel-caption">
+                    <h5>{{ c1.header_car }}</h5>
+                    <p>{{ c1.header2_car }}</p>
+                </div>
+            </div>
+            {% for i in car %}
+            <div class="carousel-item">
+                <img style="max-width: auto;height:100%;"
+                     src="{{ i.image_car.url }}"
+                     class="d-block w-100 img-responsive" alt="...">
+                <div class="carousel-caption">
+                    <h5>{{ i.header_car }}</h5>
+                    <p>{{ i.header2_car }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Предыдущий</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Следующий</span>
+        </button>
+    </div>
+    <!--  карусель-->
+
+
+    <div class="container marketing">
+        <div class="row">
+            {% for i in circle %}
+            <div class="col-lg-4 ">
+                <img src="{{ i.image_circle.url }}" class="rounded-circle" width="160" height="160"
+                     aria-label="Pla">
+                <h2>{{ i.header_circle }}</h2>
+                <p>{{ i.header2_circle }}</p>
+            </div>
+            {% endfor %}
+        </div><!-- /.row -->
+
+
+        <!-- START THE FEATURETTES -->
+        {% for i in big_im %}
+        {% if i.is_right %}
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading"><span class="text-muted">{{ i.header_big }}</span></h2>
+                <p class="lead">{{ i.header2_big }}</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img src="{{ i.image_big.url }}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                     width="500" height="500"
+                     aria-label="Pla">
+            </div>
+        </div>
+
+        {% else %}
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">{{ i.header_big }}</h2>
+                <p class="lead">{{ i.header2_big }}</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img src="{{ i.image_big.url }}" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+                     width="500" height="500"
+                     aria-label="Pla">
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+
+        <!-- /END THE FEATURETTES -->
+    <hr class="featurette-divider">
+    </div><!-- /.container -->
+
+</main>
+{% endblock %}

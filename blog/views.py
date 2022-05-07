@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 def post_detail(request, post_slug):
     post = get_object_or_404(Post, slug=post_slug)
     desc=post.category_post
-    category_list = Category_post.objects.all()
+    category_list = Category_post.objects.all().order_by('name_category')
     photo = Photo.objects.all()
     context = {'post': post,
                'photo': photo,
@@ -18,7 +18,7 @@ def post_detail(request, post_slug):
 
 def category_list(request, category_slug=None):
     category = None
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-time_create')
     if category_slug:
         category = get_object_or_404(Category_post, slug=category_slug)
         posts = posts.filter(category_post=category)
@@ -33,7 +33,7 @@ def category_list(request, category_slug=None):
         posts = paginator.page(1)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
-    category_list = Category_post.objects.all()
+    category_list = Category_post.objects.all().order_by('name_category')
     context = {
         'posts': posts,
         'category': category,
@@ -55,7 +55,7 @@ def show_news(request):
         posts = paginator.page(1)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
-    category_list = Category_post.objects.all()
+    category_list = Category_post.objects.all().order_by('name_category')
     context = {
         'posts': posts,
         'category_list': category_list

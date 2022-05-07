@@ -18,8 +18,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('electric_app.urls')),
+    path('price_table/', include('electric_app.urls')),
     path('news/', include('blog.urls')),
+    path('', include('home_app.urls')),
 ]
 
 from . import settings
