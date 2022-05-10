@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'electric_app',
     'blog',
     'home_app',
-    'django_cleanup'
+
 ]
 
 MIDDLEWARE = [

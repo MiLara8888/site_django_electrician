@@ -1,7 +1,7 @@
 {% extends 'electric_app/base.html' %}
 {% load static %}
 
-
+{% block title %}<title>Электрик в краснодаре | Готовые объекты</title>{% endblock %}
 {% block content %}
 <main class="bg-dark">
     <!--    контейнер-->
@@ -20,14 +20,14 @@
     <div class="row g-5 bg-light">
 
         <!--    div боковой панель-->
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="position-sticky" style="top: 2rem;">
                 {% include "blog/list_categories.html" %}
             </div>
         </div>
         <!--    div боковой панель-->
 
-        <div class="album py-5 bg-light col-md-10 ">
+        <div class="album py-5 bg-light col-md-9 ">
 
             <div class="container">
                 {% include "blog/pagination.html" with page=posts %}
@@ -61,7 +61,7 @@
                     {% endfor %}
 
                 </div>
-            {% include "blog/pagination.html" with page=posts %}
+                {% include "blog/pagination.html" with page=posts %}
             </div>
 
         </div>

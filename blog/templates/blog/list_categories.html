@@ -1,10 +1,22 @@
+<!--<div class="p-4">-->
+<!--    <h4 class="fst-italic">Категории</h4>-->
+<!--    <ol class="list-unstyled mb-0">-->
+<!--        <li><a href="{% url 'news' %}">Все записи</a></li>-->
+<!--        {% for i in category_list %}-->
+<!--        <li><a href="{{ i.get_absolute_url }}">{{ i.name_category }}</a></li>-->
+<!--        {% endfor %}-->
+<!--    </ol>-->
+<!--</div>-->
+
 <div class="p-4">
-    <h4 class="fst-italic">Категории</h4>
     <ol class="list-unstyled mb-0">
-        <li><a href="{% url 'news' %}">Все записи</a></li>
+        <li class="list-group-item list-group-item-dark"><a style="text-decoration: none; color: black;" href="{% url 'news' %}">Все
+            записи</a></li>
         {% for i in category_list %}
-        <li><a href="{{ i.get_absolute_url }}">{{ i.name_category }}</a></li>
+        <li class="list-group-item list-group-item-secondary"><a style="text-decoration: none; color: black;"
+                                                                 href="{{ i.get_absolute_url }}">{{ i.name_category }}</a></li>
         {% endfor %}
     </ol>
 </div>
+
 
