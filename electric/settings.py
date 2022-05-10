@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'electric_app',
     'blog',
     'home_app',
-
 ]
 
 MIDDLEWARE = [

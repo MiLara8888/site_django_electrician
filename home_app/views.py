@@ -2,7 +2,6 @@ from django.shortcuts import render
 from .models import *
 
 
-
 def home(request):
     carousel = Carousel.objects.all()
     circle = Circle.objects.all()
@@ -13,3 +12,7 @@ def home(request):
         'big_im': big_im,
     }
     return render(request, 'home_app/home.html', context=context)
+
+
+def contact(request):
+    return render(request,'home_app/contact.html')
